@@ -1,6 +1,6 @@
 [package]
 name = "pipebuf_rustls"
-version = "0.21.0"
+version = "0.23.0"
 edition = "2021"
 authors = ["Jim Peters <jim@uazu.net>"]
 
@@ -11,9 +11,25 @@ readme = "README.md"
 repository = "https://github.com/uazu/pipebuf_rustls"
 documentation = "https://docs.rs/pipebuf_rustls"
 
-keywords = ["rustls","crypto","async","pipebuf"]
+keywords = [ "rustls", "crypto", "async", "pipebuf" ]
 categories = [ "asynchronous", "cryptography", "network-programming" ]
 
+[features]
+default = ["buffered"]
+buffered = ["rustls/std"]
+unbuffered = []
+
 [dependencies]
-pipebuf = "0.2"
-rustls = "0.21.1"
+pipebuf = "0.3.1"
+rustls = { version = "0.23.4", default-features = false }
+
+[dev-dependencies]
+# For the tests, we need `std` and `ring`
+rustls = { version = "0.23.4", default-features = false, features = ["std", "ring"] }
+rustls-pemfile = "2.1.2"
+criterion = { version = "0.5", features = ["html_reports"] }
+pprof = { version = "0.13", features = ["criterion", "flamegraph"] }
+
+[[bench]]
+name = "stream"
+harness = false

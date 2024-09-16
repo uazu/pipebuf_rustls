@@ -34,6 +34,12 @@ impl TlsClient {
         Ok(Self { cc })
     }
 
+    /// Get immutable access to the wrapped `ClientConnection`, if
+    /// available
+    pub fn connection(&self) -> Option<&ClientConnection> {
+        self.cc.as_ref()
+    }
+
     /// Process as much data as possible, moving data between `ext`
     /// and `int`.  `ext` is the pipe which typically carries TLS
     /// protocol data to/from an external TCP connection.  `int` is

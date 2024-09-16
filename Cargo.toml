@@ -1,6 +1,6 @@
 [package]
 name = "pipebuf_rustls"
-version = "0.23.0"
+version = "0.23.1"
 edition = "2021"
 authors = ["Jim Peters <jim@uazu.net>"]
 
